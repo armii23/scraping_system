@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # class Resource(models.Model):
 #     title = models.CharField(max_length = 255)
@@ -24,20 +25,10 @@ class Internship(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    users = models.ManyToManyField(User)
 
     def __str__(self):
         return self.title
 
     class Meta:
         ordering = ['created_at']
-
-
-# class User(models.Model):
-#     firstname = models.CharField(max_length = 50)
-#     last_name = models.CharField(max_length=50)
-#     email = models.EmailField(unique=True)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     internships = models.ManyToManyField(Internship)
-#
-#     def __str__(self):
-#         return self.firstname
