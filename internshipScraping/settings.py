@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # new
     'users.apps.UsersConfig',
-    'crispy_forms'
+    'crispy_forms',
     'webScraping.apps.WebscrapingConfig'
 ]
 
