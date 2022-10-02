@@ -20,6 +20,7 @@ from users import views as user_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('users.urls')),
     path('reg', user_views.register, name='reg'),
     path('login', auth.LoginView.as_view(template_name = 'users/login.html'), name='login'),
     path('logout', auth.LogoutView.as_view(template_name = 'users/logout.html'), name='logout'),
