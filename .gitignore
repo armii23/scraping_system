@@ -4,6 +4,9 @@ db.sqlite3
 *.log
 *.pot
 *.pyc
+*/*/*/pycache/
+*/*/pycache/
+*/pycache/
 */*/*/__pycache__/
 */*/__pycache__/
 */__pycache__/
