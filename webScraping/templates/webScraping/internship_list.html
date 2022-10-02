@@ -13,9 +13,17 @@
     <div class="col-sm-8 offset-sm-2">
 
       <ul class="list-group">
-        {% for category in object_list %}
+        {% for internship in internships %}
         <li class="list-group-item">
-          <p>{{ category.title }}</p>
+          <p>{{ internship.title }}</p>
+        </li>
+        {% endfor %}
+      </ul>
+
+      <ul class="list-group">
+        {% for category in categories %}
+        <li class="list-group-item">
+          <p><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></p>
         </li>
         {% endfor %}
       </ul>

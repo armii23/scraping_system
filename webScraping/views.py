@@ -99,10 +99,13 @@ class ScrapeData:
 
 class InternshipView(ListView):
     model = Internship
+    context_object_name = 'internships'
     template_name = "webScraping/internship_list.html"
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        categories = Category.objects.all()
+        context.update({'categories': categories})
         current_time = datetime.now().strftime('%H:%M:%S')
 
         if current_time == "01:00:00":
@@ -112,6 +115,18 @@ class InternshipView(ListView):
         return context
 
 
-class CategoryListView(ListView):
-    model = Category
+class InternshipCategoryView(ListView):
+    model = Internship
     template_name = "webScraping/internship_list.html"
+    context_object_name = 'internships'
+    allow_empty = False
+
+    def get_queryset(self):
+        return Internship.objects.filter(category__slug=self.kwargs['cat_slug']).select_related('category')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # category = Category.objects.get(slug=self.kwargs['cat_slug'])
+        # context['title'] = str(context['internships'][0].category_id)
+        # context['cat_selected'] = context['internships'][0].category_id
+        return context

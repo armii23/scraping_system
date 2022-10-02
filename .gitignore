@@ -1,3 +1,9 @@
 .idea
 .venv
 db.sqlite3
+*.log
+*.pot
+*.pyc
+*/*/*/pycache/
+*/*/pycache/
+*/pycache/
