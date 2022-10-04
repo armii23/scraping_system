@@ -24,7 +24,7 @@ class ScrapeData:
             cat_id = Category.objects.get(id=key)
 
             for item in get_list:
-                published_date = item.find("time", {"class": "job-search-card__listdate"}).get("datetime")
+                published_date = item.find("time", {"class": "job-search-card__listdate"})
                 link = item.find("a", {"class": "base-card__full-link"})
                 company = item.find("a", {"class": "hidden-nested-link"})
 
@@ -108,16 +108,16 @@ class InternshipView(ListView):
         context.update({'categories': categories})
         current_time = datetime.now().strftime('%H:%M:%S')
 
-        if current_time == "01:00:00":
-            ScrapeData.get_linkedin_data()
-            ScrapeData.get_staff_data()
+        # if current_time == "01:00:00":
+        ScrapeData.get_linkedin_data()
+        ScrapeData.get_staff_data()
 
         return context
 
 
 class InternshipCategoryView(ListView):
     model = Internship
-    template_name = "webScraping/internship_list.html"
+    template_name = "webScraping/index.html"
     context_object_name = 'internships'
     allow_empty = False
 
