@@ -108,9 +108,9 @@ class InternshipView(ListView):
         context.update({'categories': categories})
         current_time = datetime.now().strftime('%H:%M:%S')
 
-        # if current_time == "01:00:00":
-        ScrapeData.get_linkedin_data()
-        ScrapeData.get_staff_data()
+        if current_time == "01:00:00":
+            ScrapeData.get_linkedin_data()
+            ScrapeData.get_staff_data()
 
         return context
 

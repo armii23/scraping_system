@@ -1837,7 +1837,8 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 .s-content__main {
-    display: contents;
+    display: flex;
+    flex-flow: column nowrap;
     padding-right: 4.6rem;
 }
 
@@ -2285,7 +2286,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 .entry {
     padding-bottom: 1.2rem;
     margin-bottom: 3.2rem;
-    width: 50%;
+    width: 100%;
 }
 
 .entry h2 {
@@ -2330,6 +2331,9 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     margin: 0;
     padding: 0;
     font-family: "Merriweather", serif;
+}
+.entry__meta ul li.category{
+    color: #84be5b;
 }
 
 .entry__meta ul li::after {

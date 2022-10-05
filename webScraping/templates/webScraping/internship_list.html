@@ -1,35 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <div class="container">
+{% extends 'webScraping/base.html' %}
 
-  <h1 class='text-center'> Home page </h1>
+{% block content %}
+    <!-- Content
+    ================================================== -->
+    <div class="s-content">
+        <div class="row">
+            <div id="main" class="s-content__main large-8 column">
 
-  <div class="row">
-    <div class="col-sm-8 offset-sm-2">
+                {% for internship in internships %}
+                    <article class="entry">
+                        <header class="entry__header">
+                            <h2 class="entry__title h1">
+                                <a href="{{ internship.link }}" title="">{{ internship.title }}</a>
+                            </h2>
+                            <div class="entry__meta">
+                                <ul>
+                                    <li>{{ internship.created_at|date:"M d, Y" }}</li>
+                                    <li class="category">{{ internship.category }}</li>
+                                    <li>{{ internship.company }}</li>
+                                </ul>
+                            </div>
+                        </header>
+                    </article> <!-- end entry -->
+                {% endfor %}
+           </div> <!-- end main -->
 
-      <ul class="list-group">
-        {% for internship in internships %}
-        <li class="list-group-item">
-          <p>{{ internship.title }}</p>
-        </li>
-        {% endfor %}
-      </ul>
-
-      <ul class="list-group">
-        {% for category in categories %}
-        <li class="list-group-item">
-          <p><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></p>
-        </li>
-        {% endfor %}
-      </ul>
-
-    </div>
-  </div>
-</div>
-</body>
-</html>
+           <div id="sidebar" class="s-content__sidebar large-4 column">
+               <div class="widget widget--categories">
+                   <h3 class="h6">Categories.</h3> 
+                   <ul>
+                       {% for category in categories %}
+                        <li><a href="{{ category.get_absolute_url }}" title="">{{ category.title }}</a></li>
+                       {% endfor %}
+                    </ul>
+               </div>
+           </div> <!-- end sidebar -->
+       </div> <!-- end row -->
+   </div> <!-- end content-wrap -->
+{% endblock %}
