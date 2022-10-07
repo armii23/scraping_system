@@ -29,9 +29,13 @@
                <div class="widget widget--categories">
                    <h3 class="h6">Categories.</h3> 
                    <ul>
-                       {% for category in categories %}
-                        <li><a href="{{ category.get_absolute_url }}" title="">{{ category.title }}</a></li>
-                       {% endfor %}
+                   {% for category in categories %}
+                        {% if category.id == cat_selected %}
+                            <li class="selected">{{ category.title }}</li>
+                        {% else %}
+                            <li><a href="{{ category.get_absolute_url }}" title="">{{ category.title }}</a></li>
+                        {% endif %}
+                   {% endfor %}
                     </ul>
                </div>
            </div> <!-- end sidebar -->

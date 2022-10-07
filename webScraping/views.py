@@ -126,7 +126,7 @@ class InternshipCategoryView(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        # category = Category.objects.get(slug=self.kwargs['cat_slug'])
-        # context['title'] = str(context['internships'][0].category_id)
-        # context['cat_selected'] = context['internships'][0].category_id
+        categories = Category.objects.all()
+        context['cat_selected'] = context['internships'][0].category_id
+        context['categories'] = categories
         return context

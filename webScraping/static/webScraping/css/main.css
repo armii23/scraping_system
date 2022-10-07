@@ -2035,6 +2035,14 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     padding-left: 0;
 }
 
+.selected{
+    color: #656986;
+    outline: 0;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    font-weight: bold;
+}
+
 
 
 /* ===================================================================
