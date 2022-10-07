@@ -47,7 +47,7 @@
                     <ul class="s-header__nav nav_ul">
                         <li class="current"><a href="index.html">Home</a></li>
                         {% if user.is_authenticated %}
-                            <li><a href="{% url 'favourite_list' %}">Favourite</a></li>
+                            <li><a href="page.html">Profile</a></li>
                             <li><a href="{% url 'logout' %}">logout</a></li>
 
                         {% else %}
@@ -62,7 +62,22 @@
             <a class="header-menu-toggle" href="#0" title="Menu"><span>Menu</span></a>
         </header> <!-- Header End -->
 {% block content %}
-
+        {% for internship in new %}
+            <article class="entry">
+                <header class="entry__header">
+                    <h2 class="entry__title h1">
+                        <a href="{{ internship.link }}" title="">{{ internship.title }}</a>
+                    </h2>
+                    <div class="entry__meta">
+                        <ul>
+                            <li>{{ internship.created_at|date:"M d, Y" }}</li>
+                            <li class="category">{{ internship.category }}</li>
+                            <li>{{ internship.company }}</li>
+                        </ul>
+                    </div>
+                </header>
+            </article> <!-- end entry -->
+        {% endfor %}
 {% endblock %}
 
         <!-- Footer

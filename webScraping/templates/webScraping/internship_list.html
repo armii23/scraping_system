@@ -21,6 +21,9 @@
                                 </ul>
                             </div>
                         </header>
+                        {% if user.is_authenticated %}
+                         <a href="{% url 'favourite_add' post.id %}" class="btn btn-primary">Add to Favourite</a>
+                        {% endif %}
                     </article> <!-- end entry -->
                 {% endfor %}
            </div> <!-- end main -->

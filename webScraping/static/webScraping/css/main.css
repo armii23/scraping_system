@@ -2623,11 +2623,17 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     }
 }
 
-.nav_header{
-    justify-content: space-between;
+.nav_header_login{
+    display: flex;
 }
 
 .login_li{
     background-color:#9fcc7f;
     color: white;
+}
+
+.nav_ul{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
