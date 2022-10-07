@@ -2637,3 +2637,6 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     display: flex;
     justify-content: flex-end;
 }
+fieldset.form-group input{
+    width: 100%;
+}
