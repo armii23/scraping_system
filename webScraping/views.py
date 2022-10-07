@@ -4,23 +4,26 @@ from webScraping.models import *
 import requests
 from bs4 import BeautifulSoup
 from django.http import HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404,HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from . models import Internship
+from .models import Internship
 
-@ login_required
-def favourite_list(requests, id):
-    new = Internship.newmanager.filter(favourites=request.user)
-    return render(request, 'fav.html', {'new':new})
 
-@ login_required
-def favourite_add(requests, id):
+@login_required
+def favourite_list(request):
+    current_user = request.user
+    new = Internship.objects.filter(user=current_user.id)
+    return render(request, 'webScraping/fav.html', {'new': new})
+
+
+@login_required
+def favourite_add(request, id):
     post = get_object_or_404(Internship, id=id)
-    if post.favorite.filter(id=requests.user.id).exists():
-        post.favorite.remove(requests.user)
+    if post.user.filter(id=request.user.id).exists():
+        post.user.remove(request.user)
     else:
-        post.favorite.add(requests.user)
-    return HttpResponseRedirect(requests.META['HTTP_REFERER'])
+        post.user.add(request.user)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
 class ScrapeData:

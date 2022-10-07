@@ -28,7 +28,7 @@ class Internship(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
-    favorite = models.ManyToManyField(User, related_name='favorite', default=None, blank=None)
+    user = models.ManyToManyField(User)
 
     def __str__(self):
         return self.title

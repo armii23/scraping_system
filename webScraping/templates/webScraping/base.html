@@ -38,16 +38,16 @@
             <div class="row">
                 <div class="s-header__content column">
                     <h1 class="s-header__logotext">
-                        <a href="index.html" title="">Internships</a>
+                        <a  href="{% url 'internship-list' %}" title="">Internships</a>
                     </h1>
                 </div>
             </div> <!-- end row -->
            <nav class="s-header__nav-wrap">
                <div class="row">
                     <ul class="s-header__nav nav_ul">
-                        <li class="current"><a href="index.html">Home</a></li>
+                        <li class="current"><a href="{% url 'internship-list' %}">Home</a></li>
                         {% if user.is_authenticated %}
-                            <li><a href="{% url 'favourite_list' %}">Favourite</a></li>
+                            <li><a href="{% url 'favourite_list' %}">Favourites</a></li>
                             <li><a href="{% url 'logout' %}">logout</a></li>
 
                         {% else %}
@@ -80,8 +80,7 @@
                 <div class="large-6 tab-full column">
                 </div>
                 <div class="ss-copyright">
-                    <span>© Copyright Keep It Simple 2019</span>
-                    <span>Design by <a href="https://www.styleshout.com/">StyleShout</a></span>
+                    <span>© Copyright Internships {% now "Y" %}.</span>
                 </div>
             </div> <!-- end footer__bottom -->
             <div class="ss-go-top">

@@ -22,7 +22,7 @@
                             </div>
                         </header>
                         {% if user.is_authenticated %}
-                         <a href="{% url 'favourite_add' post.id %}" class="btn btn-primary">Add to Favourite</a>
+                         <a href="{% url 'favourite_add' internship.id %}" class="btn btn-primary">Add to Favourite</a>
                         {% endif %}
                     </article> <!-- end entry -->
                 {% endfor %}
