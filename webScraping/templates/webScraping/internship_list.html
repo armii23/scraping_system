@@ -22,8 +22,10 @@
                             </div>
                         </header>
                         {% if user.is_authenticated %}
-                            {% if post.user.filter(id=request.user.id).exists() %}
-                             <a href="{% url 'favourite_add' internship.id %}" class="btn btn-primary">Add to Favourite</a>
+                            {% if internship.user.all.exists %}
+                                <a href="{% url 'favourite_add' internship.id %}" class="btn btn-primary">Remove from Favourites</a>
+                            {% else %}
+                                <a href="{% url 'favourite_add' internship.id %}" class="btn btn-primary">Add to Favourites</a>
                             {% endif %}
                         {% endif %}
 

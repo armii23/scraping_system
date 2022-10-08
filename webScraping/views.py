@@ -116,14 +116,15 @@ class ScrapeData:
             return True
         return False
 
+
 def check_intern_fav(request, post):
     post = get_object_or_404(Internship)
-
     fav = bool
 
     if post.user.filter(id=request.user.id).exists():
         fav = True
     return fav
+
 
 class InternshipView(ListView):
     model = Internship
@@ -131,10 +132,9 @@ class InternshipView(ListView):
     template_name = "webScraping/internship_list.html"
 
     def get_context_data(self, object_list=None, **kwargs):
-        fav = check_intern_fav(request, post)
         context = super().get_context_data(**kwargs)
         categories = Category.objects.all()
-        context.update({'categories': categories, 'fav':fav})
+        context.update({'categories': categories})
         current_time = datetime.now().strftime('%H:%M:%S')
 
         if current_time == "01:00:00":
@@ -142,9 +142,6 @@ class InternshipView(ListView):
             ScrapeData.get_staff_data()
 
         return context
-
-        
-
 
 
 class InternshipCategoryView(ListView):
