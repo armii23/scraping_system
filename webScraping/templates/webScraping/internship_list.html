@@ -1,5 +1,5 @@
 {% extends 'webScraping/base.html' %}
-
+{% block home_class %} current {%endblock%}
 {% block content %}
     <!-- Content
     ================================================== -->
@@ -22,8 +22,11 @@
                             </div>
                         </header>
                         {% if user.is_authenticated %}
-                         <a href="{% url 'favourite_add' internship.id %}" class="btn btn-primary">Add to Favourite</a>
+                            {% if post.user.filter(id=request.user.id).exists() %}
+                             <a href="{% url 'favourite_add' internship.id %}" class="btn btn-primary">Add to Favourite</a>
+                            {% endif %}
                         {% endif %}
+
                     </article> <!-- end entry -->
                 {% endfor %}
            </div> <!-- end main -->

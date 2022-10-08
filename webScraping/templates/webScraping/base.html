@@ -45,9 +45,9 @@
            <nav class="s-header__nav-wrap">
                <div class="row">
                     <ul class="s-header__nav nav_ul">
-                        <li class="current"><a href="{% url 'internship-list' %}">Home</a></li>
+                        <li class="{%block home_class%}{%endblock%}"><a href="{% url 'internship-list' %}">Home</a></li>
                         {% if user.is_authenticated %}
-                            <li><a href="{% url 'favourite_list' %}">Favourites</a></li>
+                            <li class="{%block fav_class%}{%endblock%}"><a href="{% url 'favourite_list' %}">Favourites</a></li>
                             <li><a href="{% url 'logout' %}">logout</a></li>
 
                         {% else %}
