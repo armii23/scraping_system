@@ -1,0 +1,52 @@
+{% extends 'webScraping/base.html' %}
+{% block home_class %} current {%endblock%}
+{% block content %}
+    <!-- Content
+    ================================================== -->
+    <div class="s-content">
+        <div class="row">
+            <div id="main" class="s-content__main large-8 column">
+
+                {% for internship in internships %}
+                    <article class="entry">
+                        <header class="entry__header">
+                            <h2 class="entry__title h1">
+                                <a href="{{ internship.link }}" title="">{{ internship.title }}</a>
+                            </h2>
+                            <div class="entry__meta">
+                                <ul>
+                                    <li>{{ internship.created_at|date:"M d, Y" }}</li>
+                                    <li class="category">{{ internship.category }}</li>
+                                    <li>{{ internship.company }}</li>
+                                </ul>
+                            </div>
+                        </header>
+                        {% if user.is_authenticated %}
+                            {% if internship.user.all.exists %}
+                                <a href="{% url 'favourite_add' internship.id %}" class="btn btn-primary">Remove from Favourites</a>
+                            {% else %}
+                                <a href="{% url 'favourite_add' internship.id %}" class="btn btn-primary">Add to Favourites</a>
+                            {% endif %}
+                        {% endif %}
+
+                    </article> <!-- end entry -->
+                {% endfor %}
+           </div> <!-- end main -->
+
+           <div id="sidebar" class="s-content__sidebar large-4 column">
+               <div class="widget widget--categories">
+                   <h3 class="h6">Categories.</h3> 
+                   <ul>
+                   {% for category in categories %}
+                        {% if category.id == cat_selected %}
+                            <li class="selected">{{ category.title }}</li>
+                        {% else %}
+                            <li><a href="{{ category.get_absolute_url }}" title="">{{ category.title }}</a></li>
+                        {% endif %}
+                   {% endfor %}
+                    </ul>
+               </div>
+           </div> <!-- end sidebar -->
+       </div> <!-- end row -->
+   </div> <!-- end content-wrap -->
+{% endblock %}

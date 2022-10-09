@@ -1,0 +1,30 @@
+{% extends 'webScraping/base.html' %}
+{% block fav_class %} current {%endblock%}
+
+
+{% block content %}
+    <div class="s-content">
+        <div class="row">
+            <div id="main" class="s-content__main large-8 column">
+                {% for internship in new %}
+                    <article class="entry">
+                        <header class="entry__header">
+                            <h2 class="entry__title h1">
+                                <a href="{{ internship.link }}" title="">{{ internship.title }}</a>
+                            </h2>
+                            <div class="entry__meta">
+                                <ul>
+                                    <li>{{ internship.created_at|date:"M d, Y" }}</li>
+                                    <li class="category">{{ internship.category }}</li>
+                                    <li>{{ internship.company }}</li>
+                                </ul>
+                            </div>
+                        </header>
+                        <a href="{% url 'favourite_add' internship.id %}" class="btn btn-primary">Remove from Favourites</a>
+                    </article> <!-- end entry -->
+                {% endfor %}
+           </div> <!-- end main -->
+        </div> <!-- end row -->
+   </div> <!-- end content-wrap -->
+{% endblock %}
+

@@ -1,0 +1,98 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <!--- basic page needs
+        ================================================== -->
+        <meta charset="utf-8">
+        <title>Keep It Simple</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!-- mobile specific metas
+        ================================================== -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- CSS
+        ================================================== -->
+        <link rel="stylesheet" href="{% static 'webScraping/css/base.css' %}" rel="stylesheet" />
+        <link rel="stylesheet" href="{% static 'webScraping/css/main.css' %}" rel="stylesheet" />
+        <!-- script
+        ================================================== -->
+        <script src="{% static 'webScraping/js/modernizr.js' %}" > </script>
+        <script defer src="{% static 'webScraping/js/fontawesome/all.min.js' %}"></script>
+
+    </head>
+    <body id="top">
+        <!-- preloader
+        ================================================== -->
+        <div id="preloader">
+            <div id="loader" class="dots-fade">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <!-- Header
+        ================================================== -->
+        <header class="s-header">
+            <div class="row">
+                <div class="s-header__content column">
+                    <h1 class="s-header__logotext">
+                        <a  href="{% url 'internship-list' %}" title="">Internships</a>
+                    </h1>
+                </div>
+            </div> <!-- end row -->
+           <nav class="s-header__nav-wrap">
+               <div class="row">
+                    <ul class="s-header__nav nav_ul">
+                        <li class="{%block home_class%}{%endblock%}"><a href="{% url 'internship-list' %}">Home</a></li>
+                        {% if user.is_authenticated %}
+                            <li class="{%block fav_class%}{%endblock%}"><a href="{% url 'favourite_list' %}">Favourites</a></li>
+                            <li><a href="{% url 'logout' %}">logout</a></li>
+
+                        {% else %}
+                            <div class="nav_header_login">
+                                <li class="login_li"><a href="{% url 'login' %}">LogIn</a></li>
+                                <li><a href="{% url 'reg' %}">SignUp</a></li>
+                            </div>
+                        {% endif %}
+                    </ul> <!-- end #nav -->
+               </div>
+            </nav> <!-- end #nav-wrap -->
+            <a class="header-menu-toggle" href="#0" title="Menu"><span>Menu</span></a>
+        </header> <!-- Header End -->
+{% block content %}
+
+{% endblock %}
+
+        <!-- Footer
+        ================================================== -->
+        <footer class="s-footer">
+            <div class="row s-footer__bottom">
+                <div class="large-6 tab-full column s-footer__info">
+                    <h3 class="h6">About</h3>
+                    <p>
+                    Lorem ipsum Ullamco commodo laboris sit dolore commodo aliquip incididunt fugiat esse dolor
+                    aute fugiat minim eiusmod do velit labore fugiat officia ad sit culpa labore in consectetur
+                    sint cillum sint consectetur voluptate adipisicing Duis
+                    </p>
+                </div>
+                <div class="large-6 tab-full column">
+                </div>
+                <div class="ss-copyright">
+                    <span>© Copyright Internships {% now "Y" %}.</span>
+                </div>
+            </div> <!-- end footer__bottom -->
+            <div class="ss-go-top">
+                <a class="smoothscroll" title="Back to Top" href="#top">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0l8 9h-6v15h-4v-15h-6z"/></svg>
+                </a>
+            </div> <!-- end ss-go-top -->
+        </footer> <!-- end Footer-->
+
+        <!-- JavaScript
+        ================================================== -->
+        <script src="{% static 'webScraping/js/jquery-3.2.1.min.js' %}"></script>
+        <script src="{% static 'webScraping/js/main.js' %}"></script>
+    </body>
+</html>
